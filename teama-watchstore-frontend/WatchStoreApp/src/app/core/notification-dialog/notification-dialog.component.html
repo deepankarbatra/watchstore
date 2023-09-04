@@ -1,0 +1,30 @@
+<div style="cursor: pointer;">
+  <div *ngIf="notifications.length >= 0">
+    <h3 style="margin-top: 10px; margin-left: 10px;">Latest Notifications</h3>
+    <ul>
+      <li *ngFor="let notification of notifications; let i = index">
+        <ng-container *ngIf="shouldDisplayNotification(notification)">
+          <mat-card class="example-card" (click)="navigateToProductDetail(notification.watch.modelNumber)"
+            [ngClass]="{'bg-light': i % 2 === 0, 'bg-white': i % 2 !== 0}">
+            <mat-card-header>
+              <div class="row">
+                <div class="col-md-4">
+                  <img mat-card-sm-image [src]="notification.watch.imagePathList[0]">
+                </div>
+                <div class="col-md-8">
+                  <mat-card-title>Model No: {{ notification.watch.modelNumber }}</mat-card-title>
+                  <mat-card-subtitle *ngIf="role === 'CUSTOMER'">{{ notification.notificationMessage }}</mat-card-subtitle>
+                  <mat-card-subtitle *ngIf="role === 'ADMIN'">{{ notification.emailId }}: {{ notification.notificationMessage }}</mat-card-subtitle>
+                </div>
+              </div>
+            </mat-card-header>
+          </mat-card>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="notifications.length === 0">
+    <p style="margin-left: 10px">No Notifications for now</p>
+  </div>
+  <button style="margin-left: 400px; margin-bottom: 5px;" mat-button (click)="closeDialog()">Close</button>
+</div>

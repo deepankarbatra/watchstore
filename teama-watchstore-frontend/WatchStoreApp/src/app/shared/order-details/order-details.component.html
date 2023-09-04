@@ -1,0 +1,270 @@
+
+<div
+  class="alert alert-danger text-center"
+  role="alert"
+  *ngIf="errorMsgForOrder; else content"
+>
+  {{ errorMsgForOrder }}
+</div>
+
+<ng-template #content >
+  <div class="alert alert-danger text-center" role="alert" *ngIf="errorMsgForStatus">
+    {{ errorMsgForStatus }}
+  </div>
+  <div class="alert alert-info text-center" role="alert" *ngIf="successMsg">
+    {{ successMsg }}
+  </div>
+  <div class="container my-3">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-12">
+        <div class="card mt-0" id="cardBody">
+          <div class="row mt-2 text-center" >
+            <h4>Product Details</h4>
+          </div>
+          <div class="row p-3">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table
+                  class="table table-striped text-center justify-content-center"
+                  id="mytable"
+                >
+                  <thead class="thead-dark mb-2">
+                    <tr>
+                      <th scope="col" class="col-2">Image</th>
+                      <th scope="col" class="col-2">Model</th>
+                      <th scope="col" class="col-2">Name</th>
+                      <th scope="col" class="col-2">Brand</th>
+                      <th scope="col" class="col-2">Type</th>
+                      <th scope="col" class="col-2">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img
+                        src="{{imagePath}}"
+                        class="img-fluid"
+                        alt="no image"
+                        width="40rem"
+                      />
+                      </td>
+                      <td>
+                        <h6>{{ order.watch.modelNumber }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.watch.watchName }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.watch.watchBrand}}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.watch.watchType }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.amount | currency : "INR" }}</h6>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-3">
+    <div class="row mt-2">
+      <div class="col-md-10 offset-md-1 col-12">
+        <div class="card mt-0" id="cardBody">
+          <div class="row mt-2 text-center">
+            <h4>Order Details</h4>
+          </div>
+          <div class="row p-3">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table
+                  class="table table-striped text-center justify-content-center overflow-auto"
+                  id="mytable"
+                >
+                  <thead class="thead-dark mb-2">
+                    <tr>
+                      <th scope="col" class="col-2">ID</th>
+                      <th scope="col" class="col-2">Quantity</th>
+                      <th scope="col" class="col-2">Status</th>
+                      <th scope="col" class="col-2">Booked</th>
+                      <th
+                        scope="col"
+                        *ngIf="order.orderStatus === 'DELIVERED'; else status"
+                        class="col-2"
+                      >
+                        Delivered
+                      </th>
+                      <ng-template #status>
+                        <th scope="col" class="col-2">Last Update</th>
+                      </ng-template>
+                      <th scope="col" class="col-2">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <h6>{{ order.id }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.quantity }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.orderStatus }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.timestamp | date : "short" }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.statusTimestamp | date : "short" }}</h6>
+                      </td>
+                      <td>
+                        <h6>
+                          {{ order.amount * order.quantity | currency : "INR" }}
+                        </h6>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-3">
+    <div class="row mt-2">
+      <div class="col-md-10 offset-md-1 col-12">
+        <div class="card mt-0" id="cardBody">
+          <div class="row mt-2 text-center">
+            <h4>Shipment Details</h4>
+          </div>
+          <div class="row p-3">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table
+                  class="table table-striped text-center justify-content-center overflow-auto"
+                  id="mytable"
+                >
+                  <thead class="thead-dark mb-2">
+                    <tr>
+                      <th scope="col" class="col-2">Contact</th>
+                      <th scope="col" class="col-2">Street</th>
+                      <th scope="col" class="col-2">Landmark</th>
+                      <th scope="col" class="col-2">City</th>
+                      <th scope="col" class="col-1">Pincode</th>
+                      <th scope="col" class="col-2">State</th>
+                      <th scope="col" class="col-1">Country</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <h6>{{ order.deliveryAddress.phoneNumber }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.deliveryAddress.streetName }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.deliveryAddress.landmark }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.deliveryAddress.city }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.deliveryAddress.pincode }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.deliveryAddress.state }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.deliveryAddress.country }}</h6>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isAdminLoggedIn" class="container my-3">
+    <div class="row mt-2">
+      <div class="col-md-10 offset-md-1 col-12">
+        <div class="card mt-0" id="cardBody">
+          <div class="row mt-2 text-center">
+            <h4>User Details</h4>
+          </div>
+          <div class="row p-3">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table
+                  class="table table-striped text-center justify-content-center overflow-auto"
+                  id="mytable"
+                >
+                  <thead class="thead-dark mb-2">
+                    <tr>
+                      <th scope="col" class="col-4">Email</th>
+                      <th scope="col" class="col-4">Name</th>
+                      <th scope="col" class="col-4">Contact</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <h6>{{ order.user.emailId }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.user.name }}</h6>
+                      </td>
+                      <td>
+                        <h6>{{ order.user.phoneNumber }}</h6>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="m-3 center">
+      <button
+        *ngIf="order.orderStatus === 'BOOKED'"
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="updateStatus('In_progress')"
+      >
+        Marked In Progress
+      </button>
+      <button
+        *ngIf="order.orderStatus === 'IN_PROGRESS'"
+        type="button"
+        class="btn btn-outline-info"
+        (click)="updateStatus('In_shipment')"
+      >
+        Marked In Shipment
+      </button>
+      <button
+        *ngIf="order.orderStatus === 'IN_SHIPMENT'"
+        type="button"
+        class="btn btn-outline-success"
+        (click)="updateStatus('delivered')"
+      >
+        Marked Delivered
+      </button>
+    </div>
+  </div>
+</ng-template>

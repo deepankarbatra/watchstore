@@ -1,0 +1,36 @@
+<a class="link" [routerLink]="order.id">
+  <div class="card">
+    <div class="row mx-2 my-3">
+      <div class="col-md-1 col-3 text-center">
+        <a
+          class="link"
+          [routerLink]="['/product-detail', order.watch.modelNumber]"
+        >
+          <img src="{{imagePath}}" class="set-img img-fluid img-thumbnail" alt="No image"/>
+
+        </a>
+      </div>
+      <div class="col-md-11 col-9 text-center">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              <h6>{{ order.watch.watchBrand }}</h6>
+            </div>
+            <div class="col-md-2">
+              <h6>{{ order.watch.watchName }}</h6>
+            </div>
+            <div class="col-md-2">
+              <h6 class="card-title">{{ order.amount | currency : "INR" }}</h6>
+            </div>
+            <div class="col-md-2">
+              <h6 class="card-text">{{ order.orderStatus }}</h6>
+            </div>
+            <div class="col-md-4" >
+              <ng-content></ng-content>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

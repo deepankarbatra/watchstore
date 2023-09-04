@@ -1,0 +1,55 @@
+.mat-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.text-center {
+  justify-content: center !important;
+}
+
+.mat-card.address-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+
+.mat-card.address-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.mat-card {
+  flex-basis: 30%;
+  margin: 10px;
+  min-width: 300px;
+  white-space: normal;
+  border: 1px solid gray;
+  padding: 5px 0 0 24px;
+}
+
+.address-list {
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+}
+
+.address-list li {
+  margin-bottom: 0.5rem; 
+  line-height: 1.5; 
+}
+
+
+.mat-card-content {
+  width: 100%;
+}
+
+.full-width-row {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  margin: 5px;
+}

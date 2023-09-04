@@ -1,0 +1,48 @@
+.container {
+    margin: 20px;
+  }
+  
+  .custom-table {
+    width: 100%;
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    padding: 10px;
+  }
+  
+  .custom-table th {
+    background-color:  #00AFA3;
+    text-align: left;
+    color: white;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  .mat-paginator {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  img{
+      height: 100px;
+      width: 100px;
+  }
+  .custom-title {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+    

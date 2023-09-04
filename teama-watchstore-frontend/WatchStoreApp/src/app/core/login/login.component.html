@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10 my-4">
+      <mat-card class="card login-card mt-5">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="text-center mb-4">
+                <img src="assets/pexel.jpg" style="height: 300px; width: 250px;" alt="Logo" class="img-fluid">
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <form [formGroup]="loginUser" (ngSubmit)="onLogin()" class="d-flex flex-column align-items-center">
+                <div class="d-flex flex-column">
+                  <h3 class="my-3">Login</h3>
+                  <mat-form-field class="mt-3" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="Enter Email Id" />
+                    <mat-error *ngIf="email?.errors?.['required']">
+                      Email id is required
+                    </mat-error>
+                    <mat-error *ngIf="email?.errors?.['pattern']">
+                      Invalid email Id
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field class="mt-2 mb-2" appearance="outline">
+                    <mat-label >Password</mat-label>
+                    <input matInput formControlName="password" placeholder="enter password" type="password" />
+                    <mat-error *ngIf="password?.errors?.['required']">
+                      Password is a required field
+                    </mat-error>
+                    <mat-error *ngIf="password?.errors?.['pattern']" class="error-message">
+                      Invalid Password
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="text-center">
+                  <button mat-raised-button color="primary" type="submit" class="btn-login">Login</button>
+                  <p class="my-3">Not a member? <a routerLink="/register">Register</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

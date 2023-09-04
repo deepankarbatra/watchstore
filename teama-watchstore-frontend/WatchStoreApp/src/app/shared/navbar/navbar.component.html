@@ -1,0 +1,109 @@
+<nav class="navbar navbar-expand-lg py-1" style="background-color:  #008080"> <!--#333333 #001f3f #008080  #36454F -->
+  <div class="container">
+    <a class="navbar-brand" routerLink="product-list">
+      <span class="watch">Watch</span>
+      <span class="store">Store</span>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbar()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li
+          *ngIf="isRoleCustomer() || !isUserLoggedIn()"
+          class="nav-item active"
+        >
+        
+            <a mat-button class="nav-link" routerLink="/cart">
+              <mat-icon *ngIf="cartItemCount !== 0" matBadge="{{cartItemCount}}" matBadgeColor="primary" style="color: white">shopping_cart</mat-icon>
+              <mat-icon *ngIf="cartItemCount === 0" style="color: white">shopping_cart</mat-icon>
+            </a>
+        </li>
+        <li *ngIf="isRoleAdmin()" class="nav-item active">
+          <a mat-button class="nav-link" routerLink="orders">
+            <mat-icon style="color: white">receipt</mat-icon>
+          </a>
+        </li>
+        <li *ngIf="isRoleAdmin()" class="nav-item active">
+          <button
+            mat-button
+            class="nav-link"
+            (click)="openAdminNotifications()"
+          >
+            <mat-icon class="icon-fix" style="color: white">notifications</mat-icon>
+          </button>
+        </li>
+        <li *ngIf="isRoleCustomer()" class="nav-item active">
+          <button mat-button class="nav-link" (click)="openUserNotifications()">
+            <mat-icon class="icon-fix"  style="color: white">notifications</mat-icon>
+          </button>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/login" *ngIf="!isUserLoggedIn()">
+            <mat-icon style="color: white; font-weight: bold">login</mat-icon>
+           
+          </a>
+        </li>
+      </ul>
+      <div class="nav-item navbar-nav dropdown text-white me-4" *ngIf="isUserLoggedIn()">
+        <button style="margin-bottom: 1px;"
+          class="nav-link dropdown-toggle"
+          id="navbarDropdown"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          {{ email }}
+        </button>
+        <div
+          class="dropdown-menu dropdown-menu-right"
+          aria-labelledby="navbarDropdown"
+        >
+          <a
+            class="dropdown-item"
+            routerLink="/profile"
+            *ngIf="isRoleCustomer()"
+          >
+            <mat-icon class="icon-fix">person</mat-icon> Profile
+          </a>
+          <a
+            class="dropdown-item"
+            routerLink="orders"
+            *ngIf="isRoleCustomer()"
+          >
+            <mat-icon class="icon-fix">shopping_bag</mat-icon> My Orders
+          </a>
+
+          <div *ngIf="isRoleAdmin()">
+            <a class="dropdown-item" routerLink="orders">
+              <mat-icon style=" margin-bottom: 6px;" class="icon-fix">assignment</mat-icon> Manage Orders
+            </a>
+            <a class="dropdown-item" routerLink="/manage-products">
+              <mat-icon class="icon-fix">manage_search</mat-icon> Manage
+              Products
+            </a>
+            <a class="dropdown-item" routerLink="/inventory-status">
+              <mat-icon class="icon-fix">storage</mat-icon> Inventory
+            </a>
+          </div>
+          <button
+            class="dropdown-item"
+            (click)="logout()"
+            *ngIf="isUserLoggedIn()"
+          >
+            <mat-icon class="icon-fix">logout</mat-icon> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

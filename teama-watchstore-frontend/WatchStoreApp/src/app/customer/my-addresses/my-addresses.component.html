@@ -1,0 +1,29 @@
+<div class="mat-card-container address-body" >
+    <div class="full-width-row text-center">
+        <h2>Your Addresses</h2>
+    </div>
+    <div class="full-width-row ms-3">
+        <button mat-raised-button color="primary" (click)="addAddress()">Add Address</button>
+    </div>
+        <div *ngFor="let address of addresses" class="mat-card address-card">
+            <mat-card-content>
+                <ul class="address-list">
+                  <li>{{address.streetName}}</li>
+                  <li>{{address.city}}, {{address.state}} {{address.pincode}}</li>
+                  <li>{{address.country}}</li>
+                  <li>Phone: {{address.phoneNumber}}</li>
+                  <li>Near {{address.landmark}}</li>
+                </ul>
+              </mat-card-content>
+              
+              
+              
+            <div class="text-center">
+                <button mat-button color="primary" (click)="editAddress(address)">
+                    Edit
+                </button>
+                &nbsp; | &nbsp;
+                <button mat-button color="warn" (click)="deleteAddress(address.addressId)">Remove</button>
+            </div>
+        </div>
+</div>

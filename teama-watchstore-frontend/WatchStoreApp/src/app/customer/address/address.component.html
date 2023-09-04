@@ -1,0 +1,85 @@
+<div class="d-flex " style="min-height: 100%; background-color: #f1f3f6">
+    <div class="container-fluid h-50  my-md-3 row w-100" *ngIf="addresses.length!=0">
+        <div class="col-lg-8 col-sm-12">
+            <mat-card class="example-card ms-4 col-md-12">
+                <span class="card-container">
+                    <mat-card-header>
+                        <mat-card-title class=" fs-3 mb-3 fw-normal">ADDRESS DETAILS</mat-card-title>
+                    </mat-card-header>
+                    <mat-radio-group aria-labelledby="example-radio-group-label" class="w-100"
+                        [(ngModel)]="selectedAddressId">
+                        <div class="card-item border-bottom" *ngFor="let address of addresses">
+                            <mat-radio-button class="example-radio-button ms-3 "
+                                [checked]="selectedAddressId === address.addressId" [value]="address.addressId">
+                                <mat-card-header>
+                                    <mat-card-title>{{userName}}
+                                        {{address.phoneNumber}}</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-subtitle
+                                    class="mt-2 ms-3 fw-semibold">{{address.streetName}},{{address.city}},&nbsp;{{address.state}}&nbsp;-&nbsp;{{address.pincode}}
+                                </mat-card-subtitle>
+                                <button class="btn  mt-2 ms-0  fw-semibold " style="  border:none; "
+                                    (click)="editAddress(address)">EDIT
+                                </button>
+                            </mat-radio-button>
+
+                        </div>
+                    </mat-radio-group>
+                </span>
+                <mat-card>
+                    <mat-card-header *ngIf="addresses.length!=0">
+                        <button  class="btn btn-danger ms-auto mb-2" style="width: 200px;"
+                            (click)="placeOrder()" [disabled]="isPlaced">Place order</button>
+                    </mat-card-header>
+                </mat-card>
+
+            </mat-card>
+
+        </div>
+
+        <div class="col-lg-4    " *ngIf="carts.length!=0">
+
+
+            <mat-card class="example-card  ms-4 mt-lg-0 my-3 d-sm" style=" height: 250px;">
+                <mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-subtitle style="font-size: 20px; border-bottom: 1px ridge black;">PRICE
+                            DETAILS</mat-card-subtitle>
+                    </mat-card-title-group>
+                </mat-card-header>
+
+                <mat-card-content class="mt-3">
+                    <div class="price-details-container" style="font-size: 17px; font-weight: 600;">
+                        <label>Price ({{carts.length}} items)</label>
+                        <label>₹{{totalAmount}}</label>
+                    </div>
+                    <div class="price-details-container mt-3" style="font-size: 17px;">
+                        <label>Delivery Charges </label>
+                        <label style="color: rgb(20, 200, 101);">Free</label>
+                    </div>
+                    <div style=" border-top: 1px ridge black; border-bottom: 1px ridge black;" class="mt-3">
+                        <div class="price-details-container pt-3 pb-3 fs-5" style="font-size: 17px;font-weight: 600;">
+                            <label>Total Amount</label>
+                            <label>₹{{totalAmount}}</label>
+                        </div>
+                    </div>
+                </mat-card-content>
+
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="border-top: 1px ridge black;">
+    <footer class="footer" style="margin-top: auto; ">
+        <div class="row pt-3" style="background-color: #f1f3f6">
+            <p class="col-4  ps-5 fw-light"><a
+                    href="https://www.nagarro-es.com/wp-content/uploads/2021/02/Service-Licence-Conditions_v6_202003_en.pdf"
+                    style="text-decoration: none; color: black;">Policies: Terms of use | Security</a></p>
+            <p class="col-4 text-center fw-light">©2008-2023<a href="https://nagarro.com"
+                    style="text-decoration: none; color: blue;"> Nagarro.com </a></p>
+            <p class="col-4 text-end pe-5 fw-light">Need help?<a href="https://www.nagarro.com/en/contact-us"
+                    style="text-decoration: none; color: blue;">Contact Us</a></p>
+        </div>
+    </footer>
+</div>

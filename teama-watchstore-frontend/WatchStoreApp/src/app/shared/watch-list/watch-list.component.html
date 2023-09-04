@@ -1,0 +1,125 @@
+<div class="container-fluid" >
+
+  <div class="row">
+    <!-- FILTER SECTION  -->
+    <div class="col-md-2 filter-section mt-5">
+
+
+      <h4>Select Brands</h4>
+      <div *ngFor="let brand of brands">
+        <label>
+          <input type="checkbox" name="selectedBrands" (change)="onChangeBrands(brand, $event)">
+          {{ brand }}
+        </label>
+      </div>
+
+      <h4>Select Category</h4>
+      <div *ngFor="let category of categories">
+        <label>
+          <input type="checkbox" name="selectedCategories" (change)="onChangeCategory(category, $event)">
+          {{ category }}
+        </label>
+      </div>
+
+      <h4>Select Availability</h4>
+      <div *ngFor="let availability of availabilities">
+        <label>
+          <input type="checkbox" name="selectedAvailabilities" (change)="onChangeAvailablity(availability, $event)">
+          {{ availability }}
+        </label>
+      </div>
+
+      <h4>Sort By</h4>
+      <div *ngFor="let sortBy of sortByFilters">
+        <label>
+          <input type="checkbox" name="selectedSortBy" (change)="onChangeSortBy(sortBy, $event)">
+          {{ sortBy }}
+        </label>
+      </div>
+
+      <button class="mt-2" mat-raised-button color="primary" type="submit" (click)="onApplyFilter()">Apply filter</button>
+    </div>
+    <!-- WATCHES SECTION -->
+    <div class="col-md-10 product-section">
+
+      <!-- SEARCH BAR SECTION -->
+      <div class="row">
+        <section>
+          <div class="container py-5">
+            <div class="col-lg-6 col-md-8" *ngIf="role !== 'ADMIN'">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Watch" (keyup)="searchWatches($event)" />
+              </div>
+            </div>
+            <div class="input-group input-width" *ngIf="role === 'ADMIN'">
+              <input type="text" class="form-control form-border-rd" placeholder="Search Watch"
+                (keyup)="searchWatches($event)" />
+              <div class="input-group-append add-watch-mg">
+                <button mat-raised-button color="primary" type="button" (click)="openDialog()">Add Watch</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      <!--  DISPLAY WATCHES SECTION  -->
+      <div class="row">
+        <section>
+          <div class="container py-5">
+            <div class="row  display-watch-row">
+              <h3 *ngIf="watches.length===0">"No watches to match the search criteria"</h3>
+              <div class="col-md-12 col-lg-4 mb-4 mb-lg-0  display-watch-col mt-5" *ngFor="let watch of paginatedWatches">
+
+                <div class="card">
+                  <a [routerLink]="['/product-detail',watch.modelNumber]" class=" card-link">
+
+                    <div class="image-container">
+                      <img src="{{watch.images[0].imagePath}}" class="card-img-top" alt="Laptop" />
+                    </div>
+
+
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <h6>{{watch.watchBrand}}</h6>
+                      </div>
+
+                      <div class="d-flex justify-content-between mb-3">
+                        <h5 class="mb-0">{{watch.watchName}}</h5>
+                      </div>
+                      <div class="d-flex justify-content-between mb-3">
+                        <h5 class="text-dark mb-0">Rs {{watch.price}}</h5>
+                      </div>
+                      
+
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+            <!-- PAGINATION SECTION -->
+            <div class="row">
+              <div class="container py-3">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item" [class.disabled]="currentPage === 1">
+                    <a class="page-link" (click)="goToPage(currentPage - 1)" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <!-- Add your pagination links here -->
+                  <li class="page-item" [class.disabled]="currentPage === totalPages">
+                    <a class="page-link" (click)="goToPage(currentPage + 1)" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+
+
+    </div>

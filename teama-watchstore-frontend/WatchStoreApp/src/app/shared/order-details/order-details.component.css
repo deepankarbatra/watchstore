@@ -1,0 +1,9 @@
+h6{
+    font-size: 0.8em;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 5px 15px 5px;
+    }

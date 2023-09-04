@@ -1,0 +1,16 @@
+h6{
+    font-size: 1em;
+  }
+ .per-page{
+    width: 3rem;
+ } 
+ .search-field{
+    width: 15rem;
+ }
+ .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 5px 15px 5px;
+    }
+    

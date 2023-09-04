@@ -1,0 +1,23 @@
+.link {
+    text-decoration: none;
+  }
+.order-card-height {
+    height: 200px; /* Set the desired height value */
+  }
+  h6{
+    font-size: 1em;
+  }
+  .link2 {
+    text-decoration: none; /* Remove underline on hover */
+  }
+  .set-img{
+    height: -webkit-fill-available;
+    width: 100%;
+  }
+  img:hover{
+    box-shadow: 0 4px 8px rgba(10, 9, 9, 0.3);
+
+  }
+  .card:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }

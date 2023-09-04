@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>{{actionLine}}</h1>
+<div  mat-dialog-content>
+  <form [formGroup]="watchForm" action="">
+    <mat-form-field style="margin-top: 20px;" appearance="outline">
+      <mat-label>Model Number</mat-label>
+      <input formControlName="modelNumber"  placeholder="Model Number"  matInput>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Watch Name</mat-label>
+      <input formControlName="watchName" matInput placeholder="Watch Name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Watch Brand</mat-label>
+      <input formControlName="watchBrand" matInput placeholder="Watch Brand">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Watch Type</mat-label>
+      <mat-select formControlName="watchType" placeholder="Watch Type" >
+        <mat-option value="DIGITAL">Digital</mat-option>
+        <mat-option value="ANALOGUE">Analogue</mat-option>
+        <mat-option value="AUTOMATIC">Automatic</mat-option>
+        <mat-option value="QUARTZ">Quartz</mat-option>
+        <mat-option value="SOLAR">Solar</mat-option>
+        <mat-option value="HYBRID">Hybrid</mat-option>
+        <mat-option value="CHRONOGRAPH">Chronograph</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Watch Quantity</mat-label>
+      <input matInput formControlName="watchQuantity" type="number" placeholder="Watch Quantity">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Watch Price</mat-label>
+      <input matInput formControlName="watchPrice" type="number" placeholder="Watch Price">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Watch Status</mat-label>
+      <mat-select formControlName="watchStatus" placeholder="Watch Status" >
+        <mat-option value="True">In Stock</mat-option>
+        <mat-option value="False">Out Of stock</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-label>Watch Images</mat-label>
+    <input type="file" multiple (change)="handleFileInput($event)">
+    <div  *ngFor="let images of watchImages">
+<img style="height: 50px; width: 50px;" *ngIf="isUpdate" src="{{images.imagePath}}" alt="">
+    </div>
+  </form>
+</div>
+<div style="margin :20px;" mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button style="margin-left :8px;" mat-raised-button color="primary" (click)="addWatch()">{{actionButton}}</button>
+</div>
